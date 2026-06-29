@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinyl Store</title>
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design/style.css">
+</head>
+<body>
+
+  <!--OVERLAY-->
+  <div class="overlay" id="overlay"></div>
+
+  <!--MENU MOBILE-->
+  <aside class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__header">
+      <div class="brand brand--left">
+        <span class="brand-mini">Vynil</span>
+        <span class="brand-sub">MUSIC STORE</span>
+      </div>
+      <button class="icon-btn close-menu" id="closeMenu">✕</button>
+    </div>
+
+    <nav class="mobile-nav">
+      <a href="#hero">Início</a>
+      <a href="#lancamentos">Pré-venda & Lançamentos</a>
+      <a href="#promocoes">Promoção</a>
+      <a href="#mais-vendidos">Mais vendidos</a>
+      <a href="#categorias">Categorias</a>
+      <a href="#newsletter">Newsletter</a>
+    </nav>
+
+    <div class="mobile-menu__footer">
+      <h4>Artistas em destaque</h4>
+      <ul>
+        <li>Taylor Swift</li>
+        <li>Billie Eilish</li>
+        <li>Rita Lee</li>
+        <li>Jão</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!--CARRINHO LATERAL-->
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer__header">
+      <h3>Seu carrinho</h3>
+      <button class="icon-btn close-cart" id="closeCart">✕</button>
+    </div>
+
+    <div class="cart-list" id="cartList">
+      <p class="cart-empty">Seu carrinho está vazio.</p>
+    </div>
+
+    <div class="cart-drawer__footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">R$ 0,00</strong>
+      </div>
+      <button class="btn btn-primary btn-full">Finalizar compra</button>
+    </div>
+  </aside>
+
+  <!--HEADER-->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <button class="icon-btn" id="openMenu" aria-label="Abrir menu">☰</button>
+        <button class="icon-btn icon-btn--desktop" aria-label="Pesquisar">⌕</button>
+      </div>
+
+      <a href="#" class="brand">
+        <span class="brand-mini">Vynil</span>
+        <span class="brand-sub">MUSIC STORE</span>
+      </a>
+
+      <div class="topbar-actions">
+        <button class="icon-btn icon-btn--desktop" aria-label="Minha conta">👤</button>
+        <button class="icon-btn cart-btn" id="openCart" aria-label="Carrinho">
+          🛒 <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!--HERO / BANNER PRINCIPAL-->
+    <section class="hero" id="hero">
+      <div class="hero-slider slider" id="heroSlider">
+
+        <article class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1800&auto=format&fit=crop');">
+          <div class="hero-overlay"></div>
+          <div class="container hero-content">
+            <div class="hero-copy">
+              <p class="eyebrow">NOVIDADES DA SEMANA</p>
+              <h1>Descubra vinis, CDs e itens colecionáveis</h1>
+              <p>Dividindo em até 12x sem juros</p>
+              <div class="hero-actions">
+                <a href="#lancamentos" class="btn btn-primary">Explorar lançamentos</a>
+                <a href="#categorias" class="btn btn-outline">Ver categorias</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=1800&auto=format&fit=crop');">
+          <div class="hero-overlay"></div>
+          <div class="container hero-content">
+            <div class="hero-copy">
+              <p class="eyebrow">VINIS COLORIDOS</p>
+              <h1>Monte sua coleção com edições limitadas, importados e pré-vendas exclusivas</h1>
+              <p>Produtos com até 50% de desconto</p>
+              <div class="hero-actions">
+                <a href="#promocoes" class="btn btn-primary">Ver promoções</a>
+                <a href="#mais-vendidos" class="btn btn-outline">Mais vendidos</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1487180144351-b8472da7d491?q=80&w=1800&auto=format&fit=crop');">
+          <div class="hero-overlay"></div>
+          <div class="container hero-content">
+            <div class="hero-copy">
+              <p class="eyebrow">CURADORIA</p>
+              <h1>Uma seleção especial para quem vive de musica</h1>
+              <p>Descubra vinis, CDs e colecionáveis escolhidos a dedo pela nossa curadoria</p>
+              <div class="hero-actions">
+                <a href="#newsletter" class="btn btn-primary">Receber cupom</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <button class="slider-arrow prev" data-slider="heroSlider">‹</button>
+        <button class="slider-arrow next" data-slider="heroSlider">›</button>
+        <div class="slider-dots"></div>
+      </div>
+    </section>
+
+    <!--CATEGORIAS-->
+    <section class="section section-light" id="categorias">
+      <div class="container">
+        <h2 class="section-title">Categorias</h2>
+
+        <div class="categories-grid">
+          <article class="category-card category-card--large" style="background-image:url('https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1200&auto=format&fit=crop');">
+            <div class="category-card__content">
+              <h3>Camisetas</h3>
+            </div>
+          </article>
+
+          <article class="category-card" style="background-image:url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1200&auto=format&fit=crop');">
+            <div class="category-card__content">
+              <h3>Decoração</h3>
+            </div>
+          </article>
+
+          <article class="category-card" style="background-image:url('https://images.unsplash.com/photo-1461784180009-21121b2f2048?q=80&w=1200&auto=format&fit=crop');">
+            <div class="category-card__content">
+              <h3>Vinil</h3>
+            </div>
+          </article>
+
+          <article class="category-card" style="background-image:url('https://images.unsplash.com/photo-1458560871784-56d23406c091?q=80&w=1200&auto=format&fit=crop');">
+            <div class="category-card__content">
+              <h3>Canecas</h3>
+            </div>
+          </article>
+        </div>
+
+        <div class="categories-links">
+          <div class="link-col">
+            <h4>Artistas</h4>
+            <ul>
+              <li>Billie Eilish</li>
+              <li>Charlie Brown Jr</li>
+              <li>Justin Bieber</li>
+              <li>Katy Perry</li>
+              <li>Rita Lee</li>
+            </ul>
+          </div>
+
+          <div class="link-col">
+            <h4>&nbsp;</h4>
+            <ul>
+              <li>Lady Gaga</li>
+              <li>Taylor Swift</li>
+              <li>RBD</li>
+              <li>Jão</li>
+              <li>Zeca Pagodinho</li>
+            </ul>
+          </div>
+
+          <div class="link-col">
+            <h4>Vestuário</h4>
+            <ul>
+              <li>Boné</li>
+              <li>Camiseta</li>
+              <li>Meia</li>
+              <li>Moletom</li>
+            </ul>
+          </div>
+
+          <div class="link-col">
+            <h4>Formatos</h4>
+            <ul>
+              <li>CD</li>
+              <li>DVD</li>
+              <li>Vinil / LP</li>
+              <li>Box</li>
+              <li>K7 (Cassete)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--PRÉ-VENDA & LANÇAMENTOS-->
+    <section class="section" id="lancamentos">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Pré-venda & Lançamentos</h2>
+          <a href="#" class="section-link">Ver tudo →</a>
+        </div>
+
+        <div class="section-banner slider" id="bannerLancamentos">
+          <article class="banner-slide active" style="background-image:url('https://images.unsplash.com/photo-1516280030429-27679b3dc9cf?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Edição do mês</p>
+              <h3>Tom Jobim Collection</h3>
+            </div>
+          </article>
+
+          <article class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1501612780327-45045538702b?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Clube do Vinil</p>
+              <h3>Jazz, Soul e R&B</h3>
+            </div>
+          </article>
+
+          <article class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Pré-venda</p>
+              <h3>Novos lançamentos da semana</h3>
+            </div>
+          </article>
+
+          <button class="slider-arrow prev">‹</button>
+          <button class="slider-arrow next">›</button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="product-grid" id="gridLancamentos"></div>
+      </div>
+    </section>
+
+    <!--PROMOÇÃO-->
+    <section class="section section-light" id="promocoes">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Promoção</h2>
+          <a href="#" class="section-link">Ver tudo →</a>
+        </div>
+
+        <div class="section-banner slider" id="bannerPromocoes">
+          <article class="banner-slide active" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Ofertas especiais</p>
+              <h3>Descontos em vinis importados</h3>
+            </div>
+          </article>
+
+          <article class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1461784180009-21121b2f2048?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Semana do rock</p>
+              <h3>LPs, box e colecionáveis</h3>
+            </div>
+          </article>
+
+          <article class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Relâmpago</p>
+              <h3>Até 40% OFF em selecionados</h3>
+            </div>
+          </article>
+
+          <button class="slider-arrow prev">‹</button>
+          <button class="slider-arrow next">›</button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="product-grid" id="gridPromocoes"></div>
+      </div>
+    </section>
+
+    <!--MAIS VENDIDOS-->
+    <section class="section" id="mais-vendidos">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Os mais vendidos</h2>
+          <a href="#" class="section-link">Ver tudo →</a>
+        </div>
+
+        <div class="section-banner slider" id="bannerMaisVendidos">
+          <article class="banner-slide active" style="background-image:url('https://images.unsplash.com/photo-1504898770365-14faca6a7320?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Top vendas</p>
+              <h3>Os queridinhos da semana</h3>
+            </div>
+          </article>
+
+          <article class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Em alta</p>
+              <h3>Clássicos e novidades no topo</h3>
+            </div>
+          </article>
+
+          <article class="banner-slide" style="background-image:url('https://images.unsplash.com/photo-1516280030429-27679b3dc9cf?q=80&w=1800&auto=format&fit=crop');">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+              <p>Favoritos</p>
+              <h3>Seleção da curadoria</h3>
+            </div>
+          </article>
+
+          <button class="slider-arrow prev">‹</button>
+          <button class="slider-arrow next">›</button>
+          <div class="slider-dots"></div>
+        </div>
+
+        <div class="product-grid" id="gridMaisVendidos"></div>
+      </div>
+    </section>
+
+    <!--Clube da Loja-->
+    <section class="newsletter" id="newsletter">
+      <div class="container newsletter-box">
+        <div class="newsletter-copy">
+          <h2>Que tal 5% de desconto em sua primeira compra?</h2>
+          <p>Entrando no clube você recebe um cupom de 5%, novidades, ofertas e muito mais.</p>
+          <small>*Desconto não acumulativo com outras promoções. O cupom é enviado por e-mail em até 24 horas.</small>
+        </div>
+
+        <form class="newsletter-form" id="newsletterForm">
+          <label for="email">Digite seu melhor e-mail</label>
+          <input id="email" type="email" placeholder="E-mail">
+          <button class="btn btn-dark btn-full" type="submit">Receber Cupom</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!--FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="brand footer-brand">
+        <span class="brand-mini">Vynil</span>
+        <span class="brand-sub">MUSIC STORE</span>
+      </div>
+
+      <a href="#" class="btn btn-primary reseller-btn">Área do Revendedor</a>
+
+      <div class="footer-links">
+        <details open>
+          <summary>Institucional</summary>
+          <ul>
+            <li><a href="#">Quem somos</a></li>
+            <li><a href="#">Nossas lojas</a></li>
+            <li><a href="#">Política de privacidade</a></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Política comercial</summary>
+          <ul>
+            <li><a href="#">Frete e entrega</a></li>
+            <li><a href="#">Trocas e devoluções</a></li>
+            <li><a href="#">Formas de pagamento</a></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Ajuda</summary>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Como comprar</a></li>
+            <li><a href="#">Rastrear pedido</a></li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Atendimento</summary>
+          <ul>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">WhatsApp</a></li>
+            <li><a href="#">E-mail</a></li>
+          </ul>
+        </details>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          <h4>Formas de pagamento</h4>
+          <p>Visa · Mastercard · American Express · Elo</p>
+        </div>
+        <div>
+          <h4>Segurança</h4>
+          <p>?</p>
+        </div>
+        <div>
+          <h4>Siga nossas redes sociais</h4>
+          <p>Facebook · Instagram · YouTube</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="discos.js"></script>
+</body>
+</html>
