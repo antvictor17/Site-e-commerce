@@ -3,94 +3,149 @@ const storeProducts = {
   lancamentos: [
     {
       id: 1,
-      artist: "",
-      name: "",
-      price: 289.90,
-      installments: "ou 12x de R$ 24,15",
-      badge: "Pré-venda",
-      image: ""
+      artist: "Kid Abelha",
+      name: "Vinil - Acústico (2LP)",
+      price: 244.90,
+      installments: "ou 12x de R$ 20,41",
+      badge: "Nacional",
+      image: "imagem/Kid_Abelha.png"
     },
     {
       id: 2,
-      artist: "",
-      name: "",
-      price: 299.90,
-      installments: "ou 12x de R$ 24,99",
-      badge: "Pré-venda",
-      image: ""
+      artist: "Bruno Mars",
+      name: "Vinil - The Romantic",
+      price: 344.90,
+      installments: "ou 12x de R$ 28,75",
+      badge: "Pré-venda/Importado",
+      image: "imagem/Bruno_Mars-the_romantic.png"
     },
     {
       id: 3,
       artist: "Olivia Rodrigo",
-      name: "You Seem Pretty Sad for a Girl So in Love (LP/Vinil)",
-      price: 369.90,
-      installments: "ou 12x de R$ 30,82",
+      name: "Vinil - You Seem Pretty Sad for a Girl So in Love (LP)",
+      price: 269.90,
+      installments: "ou 12x de R$ 22,50",
+      badge: "Pré-venda/Importado",
+      image: "imagem/Olivia_Rodrigo-You_Seem_Pretty_Sad_for_a_Girl_So_in_Love.png"
+    },
+    {
+      id: 10,
+      artist: "Anitta",
+      name: "Camiseta - EQUILIBRIVM FLOWERS",
+      price: 140.00,
+      installments: "ou 12x de R$ 11,67",
+      badge: "Nacional",
+      image: "imagem/Anitta.png"
+    },
+    {
+      id: 11,
+      artist: "Queen",
+      name: "Cassete Queen II",
+      price: 189.90,
+      installments: "ou 12x de R$ 15,83",
       badge: "Importado",
-      image: ""
+      image: "imagem/Queen-k7.png"
+    },
+    {
+      id: 12,
+      artist: "Laufey",
+      name: "Vinil - A Matter of Time: Live at Madison Square Garden (VERMELHO)",
+      price: 240.00,
+      installments: "ou 12x de R$ 20,00",
+      badge: "Importado",
+      image: "imagem/Laufey.png"
     }
   ],
 
   promocoes: [
     {
       id: 4,
-      artist: "",
-      name: "",
-      price: 125.94,
-      oldPrice: 209.90,
-      installments: "ou 12x de R$ 10,49",
-      badge: "40% OFF",
-      image: ""
+      artist: "Jão",
+      name: "Vinil - Pirata (VERMELHO)",
+      price: 209.00,
+      oldPrice: 250.00,
+      installments: "ou 12x de R$ 17,50",
+      badge: "Nacional",
+      image: "imagem/Jao_Pirata.png"
     },
     {
       id: 5,
-      artist: "",
-      name: "",
-      price: 244.93,
-      oldPrice: 349.90,
-      installments: "ou 12x de R$ 20,41",
-      badge: "30% OFF",
-      image: ""
+      artist: "Chappell Roan",
+      name: "Vinil - The Rise and Fall of a Midwest Princess (2LP)",
+      price: 240.00,
+      oldPrice: 299.90,
+      installments: "ou 12x de R$ 20",
+      badge: "Importado",
+      image: "imagem/Chappell_Roan.png"
     },
     {
       id: 6,
-      artist: "",
-      name: "",
-      price: 399.95,
-      oldPrice: 799.90,
-      installments: "ou 12x de R$ 33,32",
-      badge: "50% OFF",
-      image: ""
-    }
+      artist: "Venom",
+      name: "CD - Into Oblivion",
+      price: 369.00,
+      oldPrice: 399.95,
+      installments: "ou 12x de R$ 30,75",
+      badge: "Importado",
+      image: "imagem/Venom.png"
+    },
+    {
+      id: 13,
+      artist: "Tyler The Creator",
+      name: "Camiseta Call Me If You Get Lost",
+      price: 85.00,
+      oldPrice: 104.90,
+      installments: "ou 12x de R$ 14,91",
+      badge: "Importado",
+      image: "imagem/Tyler_The_Creator.png"
+    },
   ],
 
   maisVendidos: [
     {
       id: 7,
       artist: "Ariana Grande",
-      name: "Petal (LP/Vinil)",
-      price: 400.90,
-      installments: "ou 12x de R$ 33,40",
-      badge: "Pré-venda",
-      image: ""
+      name: "Vinil - Petal",
+      price: 279.90,
+      installments: "ou 12x de R$ 23,35",
+      badge: "Pré-venda/Importado",
+      image: "imagem/Ariana_Grande-Petal.png"
     },
     {
       id: 8,
-      artist: "Vários Artistas",
-      name: "",
+      artist: "Cartola",
+      name: "Vinil - CARTOLA 1976",
       price: 229.90,
       installments: "ou 12x de R$ 19,15",
-      badge: "Pré-venda",
-      image: ""
+      badge: "Nacional",
+      image: "imagem/Cartola.png"
     },
     {
       id: 9,
       artist: "BTS",
       name: "CD BTS - The 5th Muster Magic Shop (Living Legend)",
-      price: 284.90,
-      installments: "ou 12x de R$ 23,74",
+      price: 520.00,
+      installments: "ou 12x de R$ 43,35",
       badge: "Importado",
-      image: ""
-    }
+      image: "imagem/BTS.png"
+    },
+    {
+      id: 16,
+      artist: "Gal Costa",
+      name: "Vinil - Série Clássicos (LP)",
+      price: 261.00,
+      installments: "ou 12x de R$ 21,75",
+      badge: "Nacional",
+      image: "imagem/Gal_Costa.png"
+    },
+    {
+      id: 17,
+      artist: "Taylor Swift",
+      name: "Vinil ",
+      price: 449.90,
+      installments: "ou 12x de R$ 37,50",
+      badge: "Importado",
+      image: "imagem/Taylor-Swift.png"
+    },
   ]
 };
 
@@ -214,11 +269,22 @@ class Slider {
   }
 }
 
+/* BADGE: detecta tipo pelo conteúdo e aplica classe de cor */
+function badgeClass(badge = "") {
+  const b = badge.toLowerCase();
+  if (b.includes("off") || b.includes("%")) return "product-card__badge--off";
+  if (b.includes("nacional"))               return "product-card__badge--nacional";
+  if (b.includes("importado"))              return "product-card__badge--importado";
+  if (b.includes("pré-venda"))              return "product-card__badge--prevenda";
+  return "product-card__badge--novo";
+}
+
 /* CARD DE PRODUTO */
 function createProductCard(product) {
+  const bClass = badgeClass(product.badge);
   return `
     <article class="product-card">
-      <span class="product-card__badge">${product.badge || "Novo"}</span>
+      <span class="product-card__badge ${bClass}">${product.badge || "Novo"}</span>
 
       <button class="product-card__wish" type="button" aria-label="Favoritar produto">
         ♡
@@ -254,6 +320,118 @@ function createProductCard(product) {
   `;
 }
 
+/* CARROSSEL DE PRODUTOS */
+class ProductCarousel {
+  constructor(wrapperId, products) {
+    this.wrapper = document.getElementById(wrapperId);
+    if (!this.wrapper) return;
+
+    this.products = products;
+    this.index = 0;
+
+    // Quantos cards cabem na tela
+    this.getVisible = () => {
+      const w = window.innerWidth;
+      if (w >= 1024) return 3;
+      if (w >= 640)  return 2;
+      return 1;
+    };
+
+    this.build();
+    window.addEventListener("resize", () => this.updateArrows());
+  }
+
+  build() {
+    // Cria estrutura: wrapper → track + setas
+    this.wrapper.classList.add("product-carousel");
+    // Zera inline o display:grid que vem do .product-grid no style.css
+    this.wrapper.style.display = "block";
+    this.wrapper.style.overflow = "hidden";
+    this.wrapper.innerHTML = "";
+
+    // Seta esquerda
+    this.prevBtn = document.createElement("button");
+    this.prevBtn.className = "carousel-arrow carousel-arrow--prev";
+    this.prevBtn.innerHTML = "&#8249;";
+    this.prevBtn.setAttribute("aria-label", "Anterior");
+    this.prevBtn.addEventListener("click", () => this.move(-1));
+    this.wrapper.appendChild(this.prevBtn);
+
+    // Track com os cards
+    this.track = document.createElement("div");
+    this.track.className = "carousel-track";
+    this.track.innerHTML = this.products.map(createProductCard).join("");
+    this.wrapper.appendChild(this.track);
+
+    // Seta direita
+    this.nextBtn = document.createElement("button");
+    this.nextBtn.className = "carousel-arrow carousel-arrow--next";
+    this.nextBtn.innerHTML = "&#8250;";
+    this.nextBtn.setAttribute("aria-label", "Próximo");
+    this.nextBtn.addEventListener("click", () => this.move(1));
+    this.wrapper.appendChild(this.nextBtn);
+
+    // Dots de paginação
+    this.dotsWrap = document.createElement("div");
+    this.dotsWrap.className = "carousel-dots";
+    this.wrapper.appendChild(this.dotsWrap);
+
+    this.updateView();
+    this.setupSwipe();
+  }
+
+  totalPages() {
+    return Math.ceil(this.products.length / this.getVisible());
+  }
+
+  move(dir) {
+    const pages = this.totalPages();
+    this.index = (this.index + dir + pages) % pages;
+    this.updateView();
+  }
+
+  updateView() {
+    const visible = this.getVisible();
+    const offset = this.index * (100 / visible);
+
+    // Desloca o track
+    this.track.style.transform = `translateX(-${offset}%)`;
+
+    // Recria os dots conforme número de páginas
+    const pages = this.totalPages();
+    this.dotsWrap.innerHTML = "";
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement("button");
+      dot.className = "carousel-dot" + (i === this.index ? " active" : "");
+      dot.setAttribute("aria-label", `Página ${i + 1}`);
+      dot.addEventListener("click", () => { this.index = i; this.updateView(); });
+      this.dotsWrap.appendChild(dot);
+    }
+
+    this.updateArrows();
+  }
+
+  updateArrows() {
+    // Oculta seta esquerda na primeira página, direita na última
+    this.prevBtn.style.opacity = this.index === 0 ? "0.3" : "1";
+    this.prevBtn.style.pointerEvents = this.index === 0 ? "none" : "auto";
+    const last = this.totalPages() - 1;
+    this.nextBtn.style.opacity = this.index === last ? "0.3" : "1";
+    this.nextBtn.style.pointerEvents = this.index === last ? "none" : "auto";
+  }
+
+  setupSwipe() {
+    let startX = 0;
+    this.track.addEventListener("touchstart", e => {
+      startX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    this.track.addEventListener("touchend", e => {
+      const delta = e.changedTouches[0].clientX - startX;
+      if (Math.abs(delta) > 40) this.move(delta > 0 ? -1 : 1);
+    }, { passive: true });
+  }
+}
+
 /* RENDERIZAÇÃO DOS PRODUTOS */
 function renderProducts() {
   const sections = [
@@ -263,10 +441,7 @@ function renderProducts() {
   ];
 
   sections.forEach(([gridId, productList]) => {
-    const grid = document.getElementById(gridId);
-    if (!grid) return;
-
-    grid.innerHTML = productList.map(createProductCard).join("");
+    new ProductCarousel(gridId, productList);
   });
 }
 
