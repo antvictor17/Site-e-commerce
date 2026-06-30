@@ -92,9 +92,9 @@ const storeProducts = {
       id: 13,
       artist: "Tyler The Creator",
       name: "Camiseta Call Me If You Get Lost",
-      price: 85.00,
+      price: 85.20,
       oldPrice: 104.90,
-      installments: "ou 12x de R$ 14,91",
+      installments: "ou 12x de R$ 7,10",
       badge: "Importado",
       image: "imagem/Tyler_The_Creator.png"
     },
