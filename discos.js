@@ -505,51 +505,406 @@ function setupDrawers() {
   const overlay = document.getElementById("overlay");
   const mobileMenu = document.getElementById("mobileMenu");
   const cartDrawer = document.getElementById("cartDrawer");
+  const authModal = document.getElementById("authModal");
+
+  const syncOverlay = () => {
+    const anyOpen = mobileMenu?.classList.contains("active") || cartDrawer?.classList.contains("active") || authModal?.classList.contains("active");
+    overlay.classList.toggle("active", anyOpen);
+  };
 
   const openMenu = () => {
     mobileMenu.classList.add("active");
-    overlay.classList.add("active");
     body.classList.add("menu-open");
+    syncOverlay();
   };
 
   const closeMenu = () => {
     mobileMenu.classList.remove("active");
-
-    if (!cartDrawer.classList.contains("active")) {
-      overlay.classList.remove("active");
-    }
-
     body.classList.remove("menu-open");
+    syncOverlay();
   };
 
   const openCart = () => {
     cartDrawer.classList.add("active");
-    overlay.classList.add("active");
     body.classList.add("cart-open");
+    syncOverlay();
   };
 
   const closeCart = () => {
     cartDrawer.classList.remove("active");
-
-    if (!mobileMenu.classList.contains("active")) {
-      overlay.classList.remove("active");
-    }
-
     body.classList.remove("cart-open");
+    syncOverlay();
   };
 
   document.getElementById("openMenu")?.addEventListener("click", openMenu);
   document.getElementById("closeMenu")?.addEventListener("click", closeMenu);
   document.getElementById("openCart")?.addEventListener("click", openCart);
   document.getElementById("closeCart")?.addEventListener("click", closeCart);
+  document.getElementById("checkoutBtn")?.addEventListener("click", () => {
+    closeCart();
+    openAccountModal({ showPayment: true });
+  });
 
   overlay?.addEventListener("click", () => {
     closeMenu();
     closeCart();
+    closeAccountModal();
   });
 
   document.querySelectorAll(".mobile-nav a").forEach(link => {
     link.addEventListener("click", closeMenu);
+  });
+}
+
+/* LOGIN DA CONTA */
+let checkoutRequested = false;
+
+const authDemoCredentials = {
+  email: "cliente@vinyl.com",
+  password: "123456",
+  name: "Cliente"
+};
+
+function getStoredAccount() {
+  try {
+    return JSON.parse(localStorage.getItem("vinyl-account"));
+  } catch {
+    return null;
+  }
+}
+
+function saveAccount(user) {
+  localStorage.setItem("vinyl-account", JSON.stringify(user));
+}
+
+function clearAccount() {
+  localStorage.removeItem("vinyl-account");
+}
+
+function getStoredUsers() {
+  try {
+    const users = JSON.parse(localStorage.getItem("vinyl-users"));
+    return Array.isArray(users) ? users : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveUsers(users) {
+  localStorage.setItem("vinyl-users", JSON.stringify(users));
+}
+
+function findUserByEmail(email) {
+  const normalizedEmail = String(email || "").trim().toLowerCase();
+  return getStoredUsers().find((user) => user.email?.toLowerCase() === normalizedEmail) || null;
+}
+
+function authenticateUser(email, password) {
+  const normalizedEmail = String(email || "").trim().toLowerCase();
+  const demoMatch = authDemoCredentials.email === normalizedEmail && authDemoCredentials.password === password;
+
+  if (demoMatch) {
+    return {
+      name: authDemoCredentials.name,
+      email: normalizedEmail,
+      password,
+      cep: "01000000"
+    };
+  }
+
+  const storedUser = findUserByEmail(normalizedEmail);
+
+  if (storedUser && storedUser.password === password) {
+    return {
+      ...storedUser,
+      email: normalizedEmail
+    };
+  }
+
+  return null;
+}
+
+function registerUser({ name, email, password, cep }) {
+  const normalizedEmail = String(email || "").trim().toLowerCase();
+  const normalizedName = String(name || "").trim();
+  const normalizedCep = normalizeCep(cep);
+
+  if (!normalizedName || !normalizedEmail || !password || !normalizedCep) {
+    return { ok: false, message: "Preencha todos os campos para criar a conta." };
+  }
+
+  if (normalizedCep.length !== 8) {
+    return { ok: false, message: "Informe um CEP válido com 8 dígitos." };
+  }
+
+  if (findUserByEmail(normalizedEmail)) {
+    return { ok: false, message: "Este e-mail já está cadastrado." };
+  }
+
+  const user = {
+    name: normalizedName,
+    email: normalizedEmail,
+    password,
+    cep: normalizedCep
+  };
+
+  const users = getStoredUsers();
+  users.push(user);
+  saveUsers(users);
+  saveAccount(user);
+
+  return { ok: true, user };
+}
+
+function updateAccountButton(user) {
+  const button = document.getElementById("openAccount");
+  if (!button) return;
+
+  if (user) {
+    button.setAttribute("aria-label", `Minha conta · ${user.name}`);
+    button.setAttribute("title", `Olá, ${user.name}`);
+    button.textContent = "✅";
+  } else {
+    button.setAttribute("aria-label", "Minha conta");
+    button.setAttribute("title", "Minha conta");
+    button.textContent = "👤";
+  }
+}
+
+function showPaymentPreview(show = true) {
+  const preview = document.getElementById("paymentPreview");
+  preview?.classList.toggle("is-hidden", !show);
+  if (show) {
+    updatePaymentSummary();
+  }
+}
+
+function switchModalView(view) {
+  const accountSection = document.getElementById("accountSection");
+  const checkoutSection = document.getElementById("checkoutSection");
+
+  if (!accountSection || !checkoutSection) return;
+
+  const isPayment = view === "payment";
+  accountSection.classList.toggle("is-hidden", isPayment);
+  checkoutSection.classList.toggle("is-hidden", !isPayment);
+}
+
+function updatePaymentSummary() {
+  const subtotal = cartState.items.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const subtotalEl = document.getElementById("paymentSubtotal");
+  const freightEl = document.getElementById("paymentFreight");
+  const totalEl = document.getElementById("paymentTotal");
+  const currentUser = getStoredAccount();
+
+  if (!subtotalEl || !freightEl || !totalEl) return;
+
+  const freight = calculateFreight(currentUser?.cep || "");
+  const total = subtotal + freight;
+
+  subtotalEl.textContent = formatPrice(subtotal);
+  freightEl.textContent = formatPrice(freight);
+  totalEl.textContent = formatPrice(total);
+}
+
+function updateAccountModalView({ showPayment = false, isLoggedIn = false } = {}) {
+  const form = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const title = document.getElementById("authTitle");
+  const subtitle = document.getElementById("authSubtitle");
+  const status = document.getElementById("authStatus");
+  const loginToggle = document.getElementById("showLoginBtn");
+  const registerToggle = document.getElementById("showRegisterBtn");
+
+  if (!form || !registerForm || !logoutBtn || !title || !subtitle || !status) return;
+
+  const shouldShowPayment = showPayment && isLoggedIn;
+
+  if (isLoggedIn) {
+    const currentUser = getStoredAccount();
+
+    title.textContent = shouldShowPayment ? "Pagamento" : "Sua conta";
+    subtitle.textContent = shouldShowPayment
+      ? "Escolha a forma de pagamento abaixo."
+      : `Olá, ${currentUser?.name || "Cliente"}! Você já está conectado.`;
+    form.classList.add("is-hidden");
+    registerForm.classList.add("is-hidden");
+    logoutBtn.classList.remove("is-hidden");
+    showPaymentPreview(shouldShowPayment);
+    status.textContent = shouldShowPayment
+      ? "Escolha a forma de pagamento abaixo."
+      : "Acesse seus pedidos e novidades com facilidade.";
+  } else {
+    title.textContent = "Entrar na sua conta";
+    subtitle.textContent = showPayment
+      ? "Faça login ou cadastre-se para continuar para o pagamento."
+      : "Use o e-mail e senha abaixo para acessar.";
+    form.classList.remove("is-hidden");
+    registerForm.classList.add("is-hidden");
+    logoutBtn.classList.add("is-hidden");
+    loginToggle?.classList.add("is-active");
+    registerToggle?.classList.remove("is-active");
+    showPaymentPreview(false);
+    status.textContent = showPayment
+      ? "Faça login ou cadastre-se para concluir o pagamento."
+      : "Credenciais demo: cliente@vinyl.com / 123456";
+  }
+
+  switchModalView(shouldShowPayment ? "payment" : "account");
+}
+
+function openAccountModal({ showPayment = false } = {}) {
+  const modal = document.getElementById("authModal");
+  const overlay = document.getElementById("overlay");
+
+  if (!modal || !overlay) return;
+
+  checkoutRequested = showPayment;
+  const currentUser = getStoredAccount();
+
+  updateAccountModalView({ showPayment, isLoggedIn: Boolean(currentUser) });
+
+  modal.classList.add("active");
+  overlay.classList.add("active");
+  document.body.classList.add("auth-open");
+  document.getElementById("loginEmail")?.focus();
+}
+
+function closeAccountModal() {
+  const modal = document.getElementById("authModal");
+  const overlay = document.getElementById("overlay");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const cartDrawer = document.getElementById("cartDrawer");
+
+  if (!modal || !overlay) return;
+
+  modal.classList.remove("active");
+  document.body.classList.remove("auth-open");
+  checkoutRequested = false;
+
+  if (!mobileMenu?.classList.contains("active") && !cartDrawer?.classList.contains("active")) {
+    overlay.classList.remove("active");
+  }
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+
+  const emailInput = document.getElementById("loginEmail");
+  const passwordInput = document.getElementById("loginPassword");
+  const status = document.getElementById("authStatus");
+
+  if (!emailInput || !passwordInput || !status) return;
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
+
+  if (!email || !password) {
+    status.textContent = "Digite seu e-mail e senha para continuar.";
+    status.classList.remove("is-success");
+    return;
+  }
+
+  const user = authenticateUser(email, password);
+
+  if (user) {
+    saveAccount(user);
+    updateAccountButton(user);
+    updateAccountModalView({ showPayment: checkoutRequested, isLoggedIn: true });
+    status.textContent = `Bem-vindo, ${user.name}! Login realizado com sucesso.`;
+    status.classList.add("is-success");
+    emailInput.value = "";
+    passwordInput.value = "";
+  } else {
+    status.textContent = "E-mail ou senha inválidos. Tente novamente.";
+    status.classList.remove("is-success");
+  }
+}
+
+function handleRegister(event) {
+  event.preventDefault();
+
+  const nameInput = document.getElementById("registerName");
+  const emailInput = document.getElementById("registerEmail");
+  const passwordInput = document.getElementById("registerPassword");
+  const cepInput = document.getElementById("registerCep");
+  const status = document.getElementById("authStatus");
+
+  if (!nameInput || !emailInput || !passwordInput || !cepInput || !status) return;
+
+  const result = registerUser({
+    name: nameInput.value,
+    email: emailInput.value,
+    password: passwordInput.value,
+    cep: cepInput.value
+  });
+
+  if (!result.ok) {
+    status.textContent = result.message;
+    status.classList.remove("is-success");
+    return;
+  }
+
+  updateAccountButton(result.user);
+  updateAccountModalView({ showPayment: checkoutRequested, isLoggedIn: true });
+  status.textContent = `Cadastro finalizado com sucesso! ${result.user.name} já está cadastrado e logado.`;
+  status.classList.add("is-success");
+  nameInput.value = "";
+  emailInput.value = "";
+  passwordInput.value = "";
+  cepInput.value = "";
+}
+
+function handleLogout() {
+  clearAccount();
+  updateAccountButton(null);
+  checkoutRequested = false;
+  updateAccountModalView({ showPayment: false, isLoggedIn: false });
+}
+
+function setupAccountModal() {
+  const openAccountButton = document.getElementById("openAccount");
+  const closeButton = document.getElementById("closeAuth");
+  const form = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const goToPaymentBtn = document.getElementById("goToPaymentBtn");
+  const loginToggle = document.getElementById("showLoginBtn");
+  const registerToggle = document.getElementById("showRegisterBtn");
+
+  updateAccountButton(getStoredAccount());
+
+  openAccountButton?.addEventListener("click", () => {
+    openAccountModal();
+  });
+
+  closeButton?.addEventListener("click", closeAccountModal);
+  form?.addEventListener("submit", handleLogin);
+  registerForm?.addEventListener("submit", handleRegister);
+  logoutBtn?.addEventListener("click", handleLogout);
+  loginToggle?.addEventListener("click", () => {
+    form?.classList.remove("is-hidden");
+    registerForm?.classList.add("is-hidden");
+    loginToggle.classList.add("is-active");
+    registerToggle?.classList.remove("is-active");
+  });
+  registerToggle?.addEventListener("click", () => {
+    form?.classList.add("is-hidden");
+    registerForm?.classList.remove("is-hidden");
+    registerToggle.classList.add("is-active");
+    loginToggle?.classList.remove("is-active");
+  });
+  goToPaymentBtn?.addEventListener("click", () => {
+    const currentUser = getStoredAccount();
+    checkoutRequested = true;
+    updateAccountModalView({ showPayment: true, isLoggedIn: Boolean(currentUser) });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAccountModal();
+    }
   });
 }
 
@@ -604,6 +959,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProducts();
   renderCart();
   setupDrawers();
+  setupAccountModal();
   setupAddToCart();
   setupNewsletter();
 
