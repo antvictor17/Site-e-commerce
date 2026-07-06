@@ -11,9 +11,114 @@
   <link rel="stylesheet" href="design/style.css">
 </head>
 <body>
-
+  <div class="topbar-notice">🎵 Frete grátis para compras acima de R$ 299 · Parcele em até 12x sem juros</div>
   <!--OVERLAY-->
   <div class="overlay" id="overlay"></div>
+
+  <div class="auth-modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-modal__content">
+      <button class="icon-btn close-auth" id="closeAuth" type="button" aria-label="Fechar conta">✕</button>
+
+      <section class="account-section" id="accountSection">
+        <h3 id="authTitle">Entrar na sua conta</h3>
+        <p id="authSubtitle" class="auth-subtitle">Use o e-mail e senha abaixo para acessar.</p>
+
+        <div class="auth-toggle" role="tablist" aria-label="Escolha entre login e cadastro">
+          <button class="auth-toggle__btn is-active" id="showLoginBtn" type="button">Fazer login</button>
+          <button class="auth-toggle__btn" id="showRegisterBtn" type="button">Cadastrar-se</button>
+        </div>
+
+        <form class="auth-form" id="loginForm">
+          <label class="auth-field" for="loginEmail">
+            E-mail
+            <input id="loginEmail" name="email" type="email" placeholder="seu@email.com" required />
+          </label>
+
+          <label class="auth-field" for="loginPassword">
+            Senha
+            <input id="loginPassword" name="password" type="password" placeholder="Sua senha" required />
+          </label>
+
+          <button class="btn btn-primary btn-full" type="submit">Entrar</button>
+        </form>
+
+        <form class="auth-form auth-form--register is-hidden" id="registerForm">
+          <h4>Cadastre-se</h4>
+          <label class="auth-field" for="registerName">
+            Nome
+            <input id="registerName" name="name" type="text" placeholder="Seu nome" required />
+          </label>
+
+          <label class="auth-field" for="registerEmail">
+            E-mail
+            <input id="registerEmail" name="email" type="email" placeholder="seu@email.com" required />
+          </label>
+
+          <label class="auth-field" for="registerPassword">
+            Senha
+            <input id="registerPassword" name="password" type="password" placeholder="Crie uma senha" required />
+          </label>
+
+          <label class="auth-field" for="registerCep">
+            CEP
+            <input id="registerCep" name="cep" type="text" inputmode="numeric" placeholder="00000-000" required />
+          </label>
+
+          <button class="btn btn-primary btn-full" type="submit">Finalizar cadastro</button>
+        </form>
+
+        <button class="btn btn-dark btn-full logout-btn is-hidden" id="logoutBtn" type="button">Sair</button>
+      </section>
+
+      <section class="checkout-section is-hidden" id="checkoutSection">
+        <div class="payment-preview" id="paymentPreview">
+          <div class="payment-preview__header">
+            <h4>Pagamento</h4>
+          </div>
+
+          <div class="payment-summary">
+            <div class="payment-summary__row">
+              <span>Subtotal</span>
+              <strong id="paymentSubtotal">R$ 0,00</strong>
+            </div>
+            <div class="payment-summary__row">
+              <span>Frete</span>
+              <strong id="paymentFreight">R$ 0,00</strong>
+            </div>
+            <div class="payment-summary__row payment-summary__row--total">
+              <span>Total</span>
+              <strong id="paymentTotal">R$ 0,00</strong>
+            </div>
+          </div>
+
+          <div class="payment-methods">
+            <label class="payment-method">
+              <input type="radio" name="paymentMethod" checked />
+              <span>Cartão de crédito</span>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="paymentMethod" />
+              <span>Pix</span>
+            </label>
+            <label class="payment-method">
+              <input type="radio" name="paymentMethod" />
+              <span>Boleto</span>
+            </label>
+          </div>
+
+          <div class="payment-card">
+            <p>Entrega prevista</p>
+            <strong>2 a 4 dias úteis</strong>
+            <small>Parcele em até 12x sem juros</small>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-full checkout-action-btn" id="goToPaymentBtn" type="button">Finalizar pagamento</button>
+      </section>
+
+      <p class="auth-status" id="authStatus" role="status">Credenciais demo: cliente@vinyl.com / 123456</p>
+    </div>
+  </div>
 
   <!--MENU MOBILE-->
   <aside class="mobile-menu" id="mobileMenu">
@@ -61,7 +166,7 @@
         <span>Total</span>
         <strong id="cartTotal">R$ 0,00</strong>
       </div>
-      <button class="btn btn-primary btn-full">Finalizar compra</button>
+      <button class="btn btn-primary btn-full" id="checkoutBtn" type="button">Finalizar compra</button>
     </div>
   </aside>
 
@@ -79,7 +184,7 @@
       </a>
 
       <div class="topbar-actions">
-        <button class="icon-btn icon-btn--desktop" aria-label="Minha conta">👤</button>
+        <button class="icon-btn icon-btn--desktop" id="openAccount" aria-label="Minha conta" title="Minha conta">👤</button>
         <button class="icon-btn cart-btn" id="openCart" aria-label="Carrinho">
           🛒 <span class="cart-count" id="cartCount">0</span>
         </button>
@@ -160,13 +265,13 @@
             </div>
           </article>
 
-          <article class="category-card" style="background-image:url('https://images.unsplash.com/photo-1461784180009-21121b2f2048?q=80&w=1200&auto=format&fit=crop');">
+          <article class="category-card" style="background-image:url('https://images.unsplash.com/photo-1458560871784-56d23406c091?q=80&w=1200&auto=format&fit=crop');">
             <div class="category-card__content">
               <h3>Vinil</h3>
             </div>
           </article>
 
-          <article class="category-card" style="background-image:url('https://images.unsplash.com/photo-1458560871784-56d23406c091?q=80&w=1200&auto=format&fit=crop');">
+          <article class="category-card" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkjyIiwos8MfBDXhJWX1ii7HBWiFewLzblwg&s');">
             <div class="category-card__content">
               <h3>Canecas</h3>
             </div>
@@ -179,9 +284,9 @@
             <ul>
               <li>Billie Eilish</li>
               <li>Charlie Brown Jr</li>
-              <li>Justin Bieber</li>
-              <li>Katy Perry</li>
-              <li>Rita Lee</li>
+              <li>tyler the creator</li>
+              <li>Olivia Rodrigo</li>
+              <li>Gal costa</li>
             </ul>
           </div>
 
@@ -429,6 +534,7 @@
     </div>
   </footer>
 
+  <script src="shipping.js"></script>
   <script src="discos.js"></script>
 </body>
 </html>

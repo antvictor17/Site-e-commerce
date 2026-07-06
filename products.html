@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="design/products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Painel</title>
+</head>
+<body>
+    <h1 id="header">Produtos</h1>
+
+    <form id="formUsingID">
+        <h3>Insira o ID:</h3>
+
+        <input type="search" id="formSearch" name="formSearch"></input>
+
+        <select name="formOptions" id="formOptions">
+            <option value="searchByID">Buscar</option>
+            <option value="deleteByID">Deletar</option>
+        </select>
+
+        <button id="btnOK" type="submit">OK</button><br><br>
+    </form>
+
+    <button id="button">Listar todos</button><br><br><br>
+
+    <ul id="displayProd"></ul>
+
+    <form id="formCreateProduct">
+        <h2 id="createHeader">Criar Produto</h2>
+
+        <label for="formName">Nome:</label><br>
+        <input type="text" id="formName" name="name"></input><br>
+
+        <label for="formDesc">Descrição:</label><br>
+        <input type="text" id="formDesc" name="description"></input><br>
+
+        <label for="formPrice">Preço:</label><br>
+        <input type="text" id="formPrice" name="price"></input><br>
+
+        <label for="formQuant">Quantidade:</label><br>
+        <input type="text" id="formQuant" name="quantity"></input><br>
+
+        <label for="formMinQuant">Quantidade Mínima:</label><br>
+        <input type="text" id="formMinQuant" name="min_quantity"></input><br>
+
+        <label for="formSupplierID">ID do Fornecedor:</label><br>
+        <input type="text" id="formSupplierID" name="supplier_id"></input><br><br>
+
+        <button type="submit">Criar</button>
+    </form><br><br><br>
+
+    <form id="formUpdProduct">
+        <h2 id="updHeader">Atualizar Produto</h2>
+
+        <label for="updID">ID:</label><br>
+        <input type="text" id="updID" name="id"></input><br>
+
+        <label for="updName">Nome:</label><br>
+        <input type="text" id="updName" name="name"></input><br>
+
+        <label for="updDesc">Descrição:</label><br>
+        <input type="text" id="updDesc" name="description"></input><br>
+
+        <label for="updPrice">Preço:</label><br>
+        <input type="text" id="updPrice" name="price"></input><br>
+
+        <label for="updQuant">Quantidade:</label><br>
+        <input type="text" id="updQuant" name="quantity"></input><br>
+
+        <label for="updMinQuant">Quantidade Mínima:</label><br>
+        <input type="text" id="updMinQuant" name="min_quantity"></input><br>
+
+        <label for="updSupplierID">ID do Fornecedor:</label><br>
+        <input type="text" id="updSupplierID" name="supplier_id"></input><br><br>
+
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <script src="./productsPage.js"></script>
+</body>
+</html>

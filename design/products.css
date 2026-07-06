@@ -1,0 +1,146 @@
+:root {
+    /* Cores */
+    --bg-color: #929292;
+    --card-color: #ffffff;
+    --primary-color: #eb2525;
+    --primary-hover: #1d4ed8;
+    --text-color: #1f2937;
+    --border-color: #cbd5e1;
+
+    /* Sombras */
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    /* Bordas */
+    --radius: 12px;
+
+    /* Espaçamentos */
+    --padding: 25px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: 40px;
+}
+
+#header {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+form {
+    background: var(--card-color);
+    max-width: 600px;
+    margin: 0 auto 35px;
+    padding: var(--padding);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--primary-color);
+}
+
+form h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+form h2,
+form h3 {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #fafafa;
+    transition: .2s;
+
+}
+
+input:hover,
+select:hover {
+    border-color: var(--primary-color);
+}
+
+button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: .5px;
+    transition: .25s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, .25);
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+#button {
+    max-width: 250px;
+    display: block;
+    margin: 0 auto 35px;
+}
+
+#displayProd {
+    max-width: 900px;
+    margin: 0 auto 35px;
+    list-style: none;
+}
+
+#displayProd li {
+    background: var(--card-color);
+    border-left: 5px solid var(--primary-color);
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+#createHeader,
+#updHeader {
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    body {
+        padding: 20px;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    #button {
+        max-width: 100%;
+    }
+}
