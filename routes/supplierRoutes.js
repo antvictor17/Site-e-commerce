@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+
 const authMiddleware = require('../middlewares/authMiddleware');
+
 const {
   getSuppliers,
   getSupplierById,
@@ -9,7 +11,7 @@ const {
   deleteSupplier
 } = require('../controllers/supplierController');
 
-router.use(authMiddleware); // protege todas as rotas abaixo
+router.use(authMiddleware);
 
 router.get('/', getSuppliers);
 router.get('/:id', getSupplierById);

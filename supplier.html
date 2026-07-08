@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Fornecedores</title>
+</head>
+<body>
+
+    <h1 id="header">Fornecedores</h1>
+
+    <form id="formUsingID">
+        <h3>Insira o ID:</h3>
+
+        <input type="search" id="formSearch" name="formSearch">
+
+        <select name="formOptions" id="formOptions">
+            <option value="searchByID">Buscar</option>
+            <option value="deleteByID">Deletar</option>
+        </select>
+
+        <button type="submit">OK</button><br><br>
+    </form>
+
+    <button id="button">Listar todos</button><br><br><br>
+
+    <ul id="displaySupplier"></ul>
+
+    <form id="formCreateSupplier">
+        <h2>Criar Fornecedor</h2>
+
+        <label>Nome:</label><br>
+        <input type="text" name="name"><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email"><br>
+
+        <label>Telefone:</label><br>
+        <input type="text" name="phone"><br>
+
+        <label>Endereço:</label><br>
+        <input type="text" name="address"><br><br>
+
+        <button type="submit">Criar</button>
+    </form><br><br><br>
+
+    <form id="formUpdateSupplier">
+        <h2>Atualizar Fornecedor</h2>
+
+        <label>ID:</label><br>
+        <input type="text" name="id"><br>
+
+        <label>Nome:</label><br>
+        <input type="text" name="name"><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email"><br>
+
+        <label>Telefone:</label><br>
+        <input type="text" name="phone"><br>
+
+        <label>Endereço:</label><br>
+        <input type="text" name="address"><br><br>
+
+        <button type="submit">Atualizar</button>
+    </form>
+
+    <script src="./pageSupplier.js"></script>
+</body>
+</html>
